@@ -170,6 +170,7 @@ function func(...arg) {
 func(1, 2, 3)	//1 2 3 undefined
 
 // 对象数组赋值
+const arr1 = [1, 2, 3]
 
 
 ```
