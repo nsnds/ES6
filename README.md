@@ -150,7 +150,7 @@ const [a, b, c, d, e, f] = 'nhwsqm'
 console.log(a, b, c, d, e, f)	//n h w s q m
 ```
 
-#### 扩展运算符和set运算符
+#### 扩展运算符和rest运算符
 
 可以很好的解决参数和对象数组未知情况下的代码编写
 
@@ -171,6 +171,222 @@ func(1, 2, 3)	//1 2 3 undefined
 
 // 对象数组赋值
 const arr1 = [1, 2, 3]
+const arr2 = arr1
+console.log(arr2)
+arr2.push(4)
+console.log(arr1) 		//这时arr1也会被改变，因为arr2的值是对内存堆栈的引用，不是真正的赋值
 
+const arr1 = [1, 2, 3]
+const arr2 = [...arr1]
+console.log(arr2)
+arr2.push(4)
+console.log(arr1) 		//这时赋值操作正确
+```
+
+**rest运算符**
+```js
+// 基本使用
+function qm(first, ...arg) {
+  console.log(arg.length)
+}
+qm(0, 1, 2, 3, 4, 5, 6, 7) 		// 7
+
+// 获取每项的值
+function qm(first, ...arg) {
+  for(let val of arg) {
+    console.log(val)
+  }
+}
+qm(0, 1, 2, 3, 4, 5, 6, 7) 		// 1 2 3 4 5 6 7
+```
+
+#### 字符串模版
+```js
+// 基本使用
+let qm = '邱敏'
+let first = `这是字符串模版的基础使用${qm}`
+console.log(first)
+
+// 还可以进行数值的运算
+let a = 1
+let b = 2
+let result = `${a + b}`
+console.log(result)
+```
+
+**字符串查找**
+```js
+let qm = '器皿'
+let str = '器皿字符串的查找'
+console.log(str.includes(qm)) 		//存在返回true
+
+// 开头是否存在
+let qm = '器皿'
+let str = '字器皿符串的查找'
+console.log(str.startsWith(qm)) 	// false
+
+// 结尾是否存在
+let qm = '器皿'
+let str = '字符串的查找器皿'
+console.log(str.endsWith(qm)) 	// true
+```
+
+**复制字符串**
+```js
+console.log('qmxiaopang|'.repeat(3)) 		// qmxiaopang|qmxiaopang|qmxiaopang|
+```
+
+#### 数字操作
+
+**是否为数字**
+```js
+console.log(Number.isFinite(1)) 	//true
+console.log(Number.isFinite(1.2)) 	//true
+console.log(Number.isFinite('1'))	//false
+console.log(Number.isFinite(NaN)) 	//false
+console.log(Number.isFinite(undefined)) 	//false
+```
+
+**是否为整数**
+```js
+console.log(Number.isInteger(123.1)) 	//false
+console.log(Number.isInteger(123.0)) 	//true
+```
+
+**转换为整数**
+```js
+console.log(Number.parseInt(9.3)) 	// 9
+```
+
+**转换为浮点数**
+```js
+console.log(Number.parseFloat(9.3)) 	// 9.3
+console.log(Number.parseFloat(9.0)) 		// 9
+```
+
+**最大安全整数、最小安全整数**
+```js
+// 整数取值范围，是2的53次方
+console.log(Math.pow(2, 53)-1) 		// 9007199254740991
+
+// 最大安全整数
+console.log(Number.MAX_SAFE_INTEGER) 		// 9007199254740991
+
+// 最小安全整数
+console.log(Number.MIN_SAFE_INTEGER) 		// -9007199254740991
+
+// 判断是否为安全整数
+console.log(Number.isSafeInteger(Math.pow(2, 53)-1)) 		// false
 
 ```
+
+#### 数组
+
+**json<font color="red">数组</font>格式**
+```js
+// json数组的数据结构
+let json = {
+  '0': 'qm',
+  '1': '小胖',
+  '2': '干啥子',
+  length: 3
+}
+```
+
+**json数组转换成数组**
+```js
+let json = {
+  '0': 'qm',
+  '1': '小胖',
+  '2': '干啥子',
+  length: 3
+}
+
+let arr = Array.from(json)
+console.log(arr) 		// ['qm', '小胖', '干啥子']
+```
+
+**Array.of()**
+```js
+// 数字转换成数组
+let arr = Array.of(1, 2, 3, 4)
+console.log(arr) 		// [1, 2, 3, 4]
+
+// 字符串转换成数组
+let arr = Array.of('qm', 'js', 'css')
+console.log(arr) 		// ['qm', 'js', 'css']
+```
+
+**find()**
+find()是<font color="red">实例</font>方法，实例方法就是Array的实例才能用的方法
+```js
+// val: 表示当前查找的值、idx: 表示当前查找的索引、arr: 表示当前数组
+let arr = [1, 2, 3, 4, 5, 6]
+let ren = arr.find(function(val, idx, arr) {
+  return val > 2
+})
+console.log(ren) 		// 3
+```
+
+**fill()**
+fill()是<font color="red">实例</font>方法
+```js
+// 接收3个参数，第一个：填充的变量、第二个：开始填充的索引、第三个：结束填充的索引(不含)
+let arr = [0, 1, 2, 3, 4, 5, 6, 7]
+arr.fill('qm', 3, 7)
+console.log(arr) 		// [0, 1, 2, 'qm', 'qm', 'qm', 'qm', 7]
+```
+
+**for of 循环**
+```js
+let arr = ['html', 'js', 'css']
+
+// 获取每一项
+for (let i of arr) {
+  console.log(i)
+}
+
+// 获取索引
+for (let idx of arr.keys()) {
+  console.log(idx)
+}
+
+// 获取每一项和索引
+for (let [idx, i] of arr.entries()) {
+  console.log(`索引:${idx}、值：${i}`)
+}
+
+```
+
+**entries()**
+entries()是<font color="red">实例</font>方法
+```js
+// entries()可以生成Iterator形式的数组，获取时需要手动next()跳转下一个值
+let arr = ['html', 'js', 'css']
+let list = arr.entries()
+console.log(list.next().value) 		// [0, html]
+console.log(list.next().value) 		// [1, js]
+console.log(list.next().value) 		// [2, css]
+```
+
+#### 箭头函数
+
+**默认值**
+```js
+function add(a, b = 1) {
+  return a + b
+}
+console.log(add(1))
+```
+
+**主动抛出错误**
+```js
+function add(a, b = 1) {
+  if (a === 0) {
+    throw new Error('this is error')
+  }
+  return a + b
+}
+console.log(add(0)) 	// Uncaught Error: this is error
+```
+
