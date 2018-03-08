@@ -390,3 +390,269 @@ function add(a, b = 1) {
 console.log(add(0)) 	// Uncaught Error: this is error
 ```
 
+**严格模式**
+```js
+// 函数若使用了默认值，又使用了严格模式，两者冲突会报错
+function add(a, b = 1) {
+  'use strict'
+  ...
+}
+```
+
+**获取传参的长度**
+
+<font color="red">func.length</font>
+
+```js
+function add(a, b) {
+  'use strict'
+  if (a === 0) {
+    throw new Error('this is error')
+  }
+  return a + b
+}
+
+console.log(add.length) 		// 2
+
+function add(a, b = 1) {
+  if (a === 0) {
+    throw new Error('this is error')
+  }
+  return a + b
+}
+console.log(add.length) 		// 1
+```
+
+**箭头函数**
+```js
+// 基础使用
+let add = (a, b = 1) => a + b
+console.log(add(1)) 		// 2
+
+// {}的使用
+let add = (a, b = 1) => {
+  console.log('jspang')
+  return a + b
+}
+console.log(add(1)) 		// 2
+```
+
+**对象的函数解构**
+```js
+let json = {
+  a: 'js',
+  b: 'html'
+}
+function func({a, b}) {
+  console.log(a, b)
+}
+func(json) 		// js html
+```
+
+**数组的解构赋值**
+```js
+let arr = ['js', 'html', 'css']
+function func(a, b, c) {
+  console.log(a, b, c)
+}
+func(...arr) 		// js html css
+```
+
+**in**
+
+用来判断对象或数组中是否存在某键
+
+```js
+// 对象
+let obj = {
+  a: 'js',
+  b: 'html'
+}
+console.log('a' in obj) 		// true
+console.log('c' in obj) 		// false
+
+// 数组
+let arr = [,,,,]
+console.log(arr.length) 		// 4
+
+console.log(0 in arr) 		// false
+
+let arr1 = ['js', 'html']
+console.log(0 in arr1) 		// true，0是指0索引是否有元素
+```
+
+**数组遍历方法**
+
+```js
+let arr = ['js', 'html', 'css']
+
+// filter
+arr.filter(x => console.log(x))
+
+// some
+arr.some(x => console.log(x))
+
+// map
+let arr1 = arr.map(x => 'qm')
+console.log(arr1)
+```
+
+#### 对象
+
+**对象赋值**
+```js
+let name = 'qm'
+let age = 23
+const obj = {name, age}
+console.log(obj)
+```
+
+**对象key值构建**
+```js
+let key = 'qm'
+const obj = {
+  [key]: 'qiumin'
+}
+console.log(obj)
+```
+
+**对象比较**
+```js
+console.log(+0 === -0) 		// true
+console.log(NaN === NaN) 		//false
+console.log(Object.is(+0, -0)) 		//false
+console.log(Object.is(NaN, NaN)) 		//true
+```
+
+**合并对象**
+```js
+const a = {a: 'qm'}
+const b = {b: 'qiumin'}
+const c = {c: 'nsnds'}
+const d = Object.assign(a, b, c)
+console.log(d) 		// {a: 'qm', b: 'qiumin', c: 'nsnds'}
+```
+
+#### symbol
+
+**全局标记**
+
+**打印**
+```js
+const a = Symbol('qm')
+console.log(a) 		// 红色的 Symbol(qm)
+console.log(a.toString()) 		// 黑色的 Symbol(qm)
+```
+
+**对象中的应用，创建对象的key、调用、赋值**
+```js
+const qm = Symbol()
+const obj = {
+  [qm]: 'qiumin'
+}
+console.log(obj[qm]) 		// qiumin
+obj[qm] = 'name'
+console.log(obj[qm]) 		// name
+```
+
+**对象元素的保护作用**
+```js
+// 不保护
+const obj = {name: 'qm', age: 23, skill: 'web'}
+for (let i in obj) {
+  console.log(obj.i)
+}
+
+// 保护年龄
+const obj = {name: 'qm', skill: 'web'}
+const age = Symbol()
+obj[age] = 18
+for (let i in obj) {
+ console.log(obj[i]) 		// qm web
+}
+console.log(obj) 		// { name: 'qm', skill: 'web', Symbol(): 18]
+```
+
+#### Set、Weakset数据结构
+
+**是<font color="red">数据结构</font>，不是数据类型**
+
+**Set的声明**
+```js
+const setArr = new Set(['qm', 'qiumin', 'web', 'nsnds'])
+console.log(setArr) 		// Set(4) {'qm', 'qiumin', 'web', 'nsnds'}
+```
+
+**Set值的新增**
+```js
+const setArr = new Set(['qm', 'qiumin', 'web', 'nsnds'])
+console.log(setArr) 		// Set(4) {'qm', 'qiumin', 'web', 'nsnds'}
+
+setArr.add('es6')
+console.log(setArr) 		// // Set(5) {'qm', 'qiumin', 'web', 'nsnds', 'es6'}
+```
+
+**Set值的删除、清除**
+```js
+// delete
+const setArr = new Set(['qm', 'qiumin', 'web', 'nsnds'])
+console.log(setArr) 		// Set(4) {'qm', 'qiumin', 'web', 'nsnds'}
+
+setArr.delete('nsnds')
+console.log(setArr) 		// Set(3) {'qm', 'qiumin', 'web'}
+
+setArr.clear()
+console.log(setArr) 		// Set(0) {}
+```
+
+**Set值的查找**
+```js
+const setArr = new Set(['qm', 'qiumin', 'web', 'nsnds'])
+console.log(setArr.has('qm')) 		// true
+```
+
+**Set遍历**
+```js
+const setArr = new Set(['qm', 'qiumin', 'web', 'nsnds'])
+for (let i of setArr) {
+  console.log(i)
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

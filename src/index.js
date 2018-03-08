@@ -169,10 +169,132 @@
 // }
 // console.log(add(1))
 
-function add(a, b = 1) {
-  if (a === 0) {
-    throw new Error('this is error')
-  }
-  return a + b
-}
-console.log(add(0))
+// function add(a, b = 1) {
+//   if (a === 0) {
+//     throw new Error('this is error')
+//   }
+//   return a + b
+// }
+// console.log(add(0))
+
+// function add(a, b = 1) {
+//   'use strict'
+//   if (a === 0) {
+//     throw new Error('this is error')
+//   }
+//   return a + b
+// }
+
+// function add(a, b) {
+//   'use strict'
+//   if (a === 0) {
+//     throw new Error('this is error')
+//   }
+//   return a + b
+// }
+// console.log(add.length)
+
+// function add(a, b = 1) {
+//   if (a === 0) {
+//     throw new Error('this is error')
+//   }
+//   return a + b
+// }
+// console.log(add.length)
+
+// let add = (a, b = 1) => a + b
+// console.log(add(1))
+
+// let json = {
+//   a: 'js',
+//   b: 'html'
+// }
+// function func({a, b}) {
+//   console.log(a, b)
+// }
+// func(json)
+
+// let arr = ['js', 'html', 'css']
+// function func(a, b, c) {
+//   console.log(a, b, c)
+// }
+// func(...arr)
+
+// let obj = {
+//   a: 'js',
+//   b: 'html',
+//   js: undefined
+// }
+// console.log('js' in obj)
+
+// let arr = [,,,,]
+// console.log(arr.length)
+
+// console.log(0 in arr)
+
+// let arr1 = ['js', 'html']
+// console.log(0 in arr1)
+
+// let arr = ['js', 'html', 'css']
+// arr.filter(x => console.log(x))
+// arr.some(x => console.log(x))
+// console.log(arr.map(x => 'qm'))
+
+// let name = 'qm'
+// let age = 23
+// const obj = {name, age}
+// console.log(obj)
+
+// let key = 'qm'
+// const obj = {
+//   [key]: 'qiumin'
+// }
+// console.log(obj)
+
+// console.log(+0 === -0)
+// console.log(NaN === NaN)
+// console.log(Object.is(+0, -0))
+// console.log(Object.is(NaN, NaN))
+
+// const a = {a: 'qm'}
+// const b = {b: 'qiumin'}
+// const c = {c: 'nsnds'}
+// const d = Object.assign(a, b, c)
+// console.log(d)
+
+// const a = Symbol('qm')
+// console.log(a)
+// console.log(a.toString())
+
+// const qm = Symbol()
+// const obj = {
+//   [qm]: 'qiumin'
+// }
+// console.log(obj[qm])
+// obj[qm] = 'name'
+// console.log(obj[qm])
+
+// const obj = {name: 'qm', age: 23, skill: 'web'}
+// for (let i in obj) {
+//   console.log(obj[i])
+// }
+
+// const obj = {name: 'qm', skill: 'web'}
+// const age = Symbol()
+// obj[age] = 18
+// for (let i in obj) {
+//  console.log(obj[i])
+// }
+// console.log(obj)
+
+// const setArr = new Set(['qm', 'qiumin', 'web', 'nsnds'])
+// console.log(setArr)
+
+// setArr.delete('nsnds')
+// console.log(setArr)
+
+// setArr.clear()
+// console.log(setArr)
+
+// const setArr = new Set(['qm', 'qiumin', 'web', 'nsnds'])
+// console.log(setArr.has('qm'))
